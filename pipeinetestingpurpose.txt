@@ -1,0 +1,32 @@
+pipeline {
+    agent any 
+    parameters {
+        string(name:'name',defaultValue:'default')
+        string(name:'age',defaultValue:'default')
+        choice(choices:['M','F','T'], name: 'gender')
+    }
+    stages {
+        stage('Name Stage') {
+            steps {
+                script {
+                           currentBuild.displayName = params.name
+                }
+                echo ("${name}")
+            }
+        }
+        stage ('Age Stage') {
+            steps {
+                script {
+                    currentBuild.displayName = params.age
+                }
+               echo ("${age}")
+            }
+        }
+        stage ('choices'){
+            steps {
+                echo ("${gender}")
+            }
+        }
+    
+    }
+}
